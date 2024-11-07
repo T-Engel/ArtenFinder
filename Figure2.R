@@ -10,15 +10,6 @@ library(units)
 theme_set(theme_cowplot()) # ggplot theme
 options(scipen=999) # Avoiding scientific notation of numbers
 
-# reading in download
-dat <-
-  read_delim(
-    "simple download/0035407-240506114902167.csv",
-    delim = "\t",
-    escape_double = FALSE,
-    trim_ws = TRUE
-  )
-
 # Retrieve data gbif (https://www.gbif.org/occurrence/download/0017597-241024112534372)
 dat<-occ_download_get("0017597-241024112534372",overwrite = F) |> occ_download_import()
 
@@ -190,8 +181,8 @@ before2010 <- dat |> filter(year<2010) |> nrow()
 col1<-plot_grid(Plot1, plot3, nrow = 2, align = "hv", labels = c("B","C"))
 
 # everything
-fig1<-plot_grid(plot2, col1, nrow = 1, labels = c("A",NULL), rel_widths = c(1,1.5))
+fig2<-plot_grid(plot2, col1, nrow = 1, labels = c("A",NULL), rel_widths = c(1,1.5))
 
 # save
-save_plot("records3.jpg", fig1,ncol = 2, nrow = 2 )
+save_plot("figure2.jpg", fig2,ncol = 2, nrow = 2 )
 
